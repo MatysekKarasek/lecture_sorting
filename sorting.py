@@ -18,20 +18,40 @@ def read_data(file_name):
     print(row)
     return data
 
-def selection_sort(numbers):
+def selection_sort(numbers, direction = "descending"):
     for i in range(len(numbers)):
         min_idx = i
         for num_idx in range(i + 1, len(numbers)):
-            if numbers[min_idx] > numbers[num_idx]:
-                min_idx = num_idx
+            if direction == "ascending":
+                if numbers[min_idx] > numbers[num_idx]:
+                    min_idx = num_idx
+            elif direction == "desceding":
+                if numbers[min_idx] < numbers[num_idx]:
+                    min_idx = num_idx
+
         numbers[i],numbers[min_idx] = numbers[min_idx], numbers[i]
     return numbers
+
+
+def bubble_sort(seznam):
+    list = []
+
+    for i in range(len(seznam)):
+        for j in range(len(seznam) - i - 1):
+            if seznam[j] > seznam[j+1]:
+                seznam[j], seznam[j+ 1] = seznam[j+1], seznam[j]
+
+    return seznam
+
 
 
 def main():
     numbers = read_data("numbers.csv")
     sorted_series = selection_sort(numbers["series_1"])
-    print(sorted_series)
+    #print(sorted_series)
+    bubble = bubble_sort(numbers["series_1"])
+    print(f"bubble{bubble}")
+
 
 if __name__ == "__main__":
     main()
